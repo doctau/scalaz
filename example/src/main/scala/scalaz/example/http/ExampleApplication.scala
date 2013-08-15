@@ -1,7 +1,7 @@
 package scalaz.example
 package http
 
-import scalaz._
+/*import scalaz._
 import Scalaz._
 import scalaz.http._
 import response._
@@ -40,4 +40,4 @@ final class ExampleApplication extends StreamStreamServletApplication {
       handle | resource(x => OK << x.toStream, NotFound.xhtml)
     }
   }
-}
+}*/

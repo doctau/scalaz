@@ -60,7 +60,7 @@ abstract class StrategyLow {
   /**
    * A strategy that evaluates its arguments using the pool of Swing worker threads.
    */
-  implicit val SwingWorker: Strategy = new Strategy {
+  /*implicit val SwingWorker: Strategy = new Strategy {
     import javax.swing.SwingWorker
     def apply[A](a: => A) = {
       val worker = new SwingWorker[A, Unit] {
@@ -69,12 +69,12 @@ abstract class StrategyLow {
       worker.execute
       () => worker.get
     }
-  }
+  }*/
 
   /**
    * A strategy that evaluates its arguments on the Swing Event Dispatching thread.
    */
-  implicit val SwingInvokeLater: Strategy = new Strategy {
+/*  implicit val SwingInvokeLater: Strategy = new Strategy {
     import javax.swing.SwingUtilities
     import SwingUtilities.invokeLater
     import java.util.concurrent.{Callable, FutureTask}
@@ -85,7 +85,7 @@ abstract class StrategyLow {
       invokeLater(task)
       () => task.get
     }
-  }
+  }*/
 }
 
 object Strategy extends StrategyLow {

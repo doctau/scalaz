@@ -60,7 +60,7 @@ object ScalazBuild extends Build {
   lazy val example = Project(
     id           = "scalaz-example",
     base         = file("example"),
-    dependencies = Seq(core, geo, http),
+    dependencies = Seq(core, geo/*, http*/),
     settings     = standardSettings ++ Seq(
       libraryDependencies <++= (scalaVersion)(sv => Seq(Dependency.Specs(sv), Dependency.ServletApi)),
       publish := false
@@ -79,7 +79,7 @@ object ScalazBuild extends Build {
 
   lazy val full = {
     // The projects that are packaged in the full distribution.
-    val projects = Seq(core, scalacheckBinding, geo, scalacheckGeo, http, example)
+    val projects = Seq(core, scalacheckBinding, geo, scalacheckGeo, /*http,*/ example)
 
     // Some intermediate keys to simplify extracting a task or setting from `projects`.
     val allPackagedArtifacts = TaskKey[Seq[Map[Artifact, File]]]("all-packaged-artifacts")
@@ -111,7 +111,7 @@ object ScalazBuild extends Build {
     Project(
       id           = "scalaz-full",
       base         = file("full"),
-      dependencies = Seq(core, scalacheckBinding, http, example, tests),
+      dependencies = Seq(core, scalacheckBinding, /*http,*/ example, tests),
       settings     = standardSettings ++ Seq(
         allSources           <<= projects.map(sources in Compile in _).join, // join: Seq[Task[A]] => Task[Seq[A]]
         allSourceDirectories <<= projects.map(sourceDirectories in Compile in _).join,
