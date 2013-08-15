@@ -2,6 +2,7 @@ import sbt._
 import Keys._
 import sbt.Package._
 import java.util.jar.Attributes.Name._
+import ch.epfl.lamp.sbtscalajs.ScalaJSPlugin
 
 
 object ScalazBuild extends Build {
@@ -163,11 +164,11 @@ object ScalazBuild extends Build {
     }
   }
 
-  lazy val standardSettings = Defaults.defaultSettings ++ Seq(
+  lazy val standardSettings = Defaults.defaultSettings ++ ScalaJSPlugin.scalaJSSettings ++ Seq(
     organization := "org.scalaz",
     version      := "6.0.5-SNAPSHOT",
-    scalaVersion := "2.9.3",
-    crossScalaVersions := Seq("2.9.3", "2.9.2", "2.8.1", "2.10.1"),
+    scalaVersion := "2.10.1",
+    crossScalaVersions := Seq("2.10.1"),
     resolvers    ++= Seq(
       "releasesResolver"  at "http://oss.sonatype.org/content/repositories/releases"
     ),
